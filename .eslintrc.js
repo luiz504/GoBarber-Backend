@@ -19,7 +19,8 @@ module.exports = {
   rules: {
     'prettier/prettier' : 'error',
     'class-methos-use-this': 'off',
-    'class-methods-use-this': 'off'
+    'class-methods-use-this': 'off',
+    'no-param-reassign': 'off'
 
   },
 };
