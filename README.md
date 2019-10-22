@@ -6,7 +6,7 @@ MVC / CRUD
 
 ## Features
 
-*Account creation
+ - [x] Account creation
 
  >Route - post('/users').{body: name, email, password}.
  >>Model - User.js /save : id , name, email, password_hash , provider, created/updated_at // Postgres
@@ -14,7 +14,8 @@ MVC / CRUD
  >>>>View - json({ id, name. email, provider }).
 
 
-
+- [ ] Authentication JTW
+> Routes -
 
 
 
