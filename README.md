@@ -5,17 +5,86 @@ MVC / CRUD
 [GoBarber-WebApp].(https://github.com/luiz504/GoBarber-Web)
 
 ## Features
-
+---
  - [x] Account creation
 
- >Route - post('/users').{body: name, email, password}.
+ >Route - post('/users').{body: name, email, password}
  >>Model - User.js /save : id , name, email, password_hash , provider, created/updated_at // Postgres
- >>>Controller - UserController.store.
- >>>>View - json({ id, name. email, provider }).
+ >>>Controller - UserController.store
+ >>>>View - json({ id, name. email, provider })
 
+ - without token authentication
 
-- [ ] Authentication JTW
-> Routes -
+ - yupValidation:{
+
+   name: [ string, required ],
+
+   email: [ string, type, required ],
+
+   password: [ string, min6, required ]
+
+ }
+
+ - Validations: {
+   email: exists,
+ }
+---
+ - [x] Login
+>Route - post('/sessions').{body: email, password}
+>>Model - User.js
+>>>Controller - SessionController.store
+>>>>View - json({ id, name. email, provider, token })
+
+- without token authentication
+
+ - yupValidation: {
+
+   email: [ string, type, required ],
+
+   password: [ string, required ]
+
+ }
+
+- Validations: {
+   email: exists,
+ }
+---
+ - [x] Account update
+
+ >Route - put('/users').{body: name, email, oldPassword, password, confirmPassword}
+ >>Model - User.js /save : name, email, password_hash , provider, created/updated_at // Postgres
+ >>>Controller - UserController.update
+ >>>>View - json({ id, name. email, provider })
+
+ - token authentication required
+
+ - yupValidation:{
+
+   name: [ string ],
+
+   email: [ string, type ],
+
+   oldPassword: [string, min6 ],
+
+   password: [ string, min6, required if 'oldPassword' exits, not equal 'oldPassword' ],
+
+   confirmPassword: [ required if password exits, equal 'password' ]
+
+ }
+
+ - Validations: {
+   email: exists,
+ }
+---
+ - [x] Authentication JTW
+ - validations: {
+
+  * token provided,
+
+  * token integrity,
+
+}
+---
 
 
 
