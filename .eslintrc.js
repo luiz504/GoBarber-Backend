@@ -20,7 +20,8 @@ module.exports = {
     'prettier/prettier' : 'error',
     'class-methos-use-this': 'off',
     'class-methods-use-this': 'off',
-    'no-param-reassign': 'off'
+    'no-param-reassign': 'off',
+    'no-unused-vars': 'off' //split auth Bearer
 
   },
 };
