@@ -1,5 +1,9 @@
 #dependencies
 node_modules
+tmp/updloads/*
 
 #files
 .env
+!tmp/updloads/.gitkeep
+
+

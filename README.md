@@ -2,7 +2,7 @@
 
 MVC / CRUD
 
-[GoBarber-WebApp].(https://github.com/luiz504/GoBarber-Web)
+[GoBarber-WebApp](https://github.com/luiz504/GoBarber-Web)
 
 ## Features
 ---
@@ -47,6 +47,7 @@ MVC / CRUD
 
 - Validations: {
    email: exists,
+   password: match,
  }
 ---
  - [x] Account update
@@ -54,7 +55,7 @@ MVC / CRUD
  >Route - put('/users').{body: name, email, oldPassword, password, confirmPassword}
  >>Model - User.js /save : name, email, password_hash , provider, created/updated_at // Postgres
  >>>Controller - UserController.update
- >>>>View - json({ id, name. email, provider })
+ >>>>View - json({ id, name, email, provider })
 
  - token authentication required
 
@@ -74,6 +75,7 @@ MVC / CRUD
 
  - Validations: {
    email: exists,
+   oldPassword: if provided, check match with password_hash.
  }
 ---
  - [x] Authentication JTW
