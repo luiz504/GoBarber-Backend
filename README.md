@@ -30,7 +30,7 @@ MVC / CRUD
  }
 ---
  - [x] Login
->Route - post('/sessions').{body: email, password}
+>Route - post('/sessions').{body/Json: email, password}
 >>Model - User.js
 >>>Controller - SessionController.store
 >>>>View - json({ id, name. email, provider, token })
@@ -52,12 +52,10 @@ MVC / CRUD
 ---
  - [x] Account update
 
- >Route - put('/users').{body: name, email, oldPassword, password, confirmPassword}
- >>Model - User.js /save : name, email, password_hash , provider, created/updated_at // Postgres
+ >Route - put('/users').{body/Json: name, email, oldPassword, password, confirmPassword}.BearerToken({user id})
+ >>Model - User.js /save : name, email, password_hash , provider, created/updated_at, avatar_id // Postgres
  >>>Controller - UserController.update
- >>>>View - json({ id, name, email, provider })
-
- - token authentication required
+ >>>>View - json({ id, name, email, provider, avatar_id })
 
  - yupValidation:{
 
@@ -72,12 +70,17 @@ MVC / CRUD
    confirmPassword: [ required if password exits, equal 'password' ]
 
  }
+ - [x] Upload Files
 
- - Validations: {
-   email: exists,
-   oldPassword: if provided, check match with password_hash.
- }
+ >Route - store('/files').{body/Multipart: 'file', img }.BearerToken({user id})
+ >>Model - File.js /save : id, name, path, created/updated_at // belongsTo User.js // Postgres
+ >>>Controller - FileControllers.update
+ >>>>View - json({ id, name, path, update/created_at })
+
+
 ---
+  ## middlewares
+
  - [x] Authentication JTW
  - validations: {
 
@@ -86,6 +89,8 @@ MVC / CRUD
   * token integrity,
 
 }
+-[x] Multipart/form-data - multer
+- filename manipulation to string randon hexadecimal + originalfile .ext
 ---
 
 
