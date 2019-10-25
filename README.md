@@ -99,13 +99,14 @@ MVC / CRUD
     ]
 
  - Validations: [
+   provider and user are diferent,
    pastdate,
-   hour availability
+   hour availability,
     ]
 
     * Provider Notification -
 
-    >Schema - Notification.js /save: _id, read, content, user_id, created/updated_at
+    >Schema - Notification.js /save: _id, read, content, user_id, created/updated_at // MongoDB
  ---
  - [x] Users appointment list
 
