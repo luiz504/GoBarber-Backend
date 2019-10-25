@@ -15,19 +15,17 @@ MVC / CRUD
 
  - without token authentication
 
- - yupValidation:{
+ - yupValidation: [
 
-   name: [ string, required ],
+   name: { string, required },
 
-   email: [ string, type, required ],
+   email: { string, type, required },
 
-   password: [ string, min6, required ]
+   password: { string, min6, required },
 
- }
+    ]
 
- - Validations: {
-   email: exists,
- }
+ - Validations: { email: exists }
 ---
  - [x] Login
 >Route - post('/sessions').{body/Json: email, password}
@@ -37,18 +35,18 @@ MVC / CRUD
 
 - without token authentication
 
- - yupValidation: {
+ - yupValidation: [
 
-   email: [ string, type, required ],
+   email: { string, type, required },
 
-   password: [ string, required ]
+   password: { string, required },
 
- }
+    ]
 
-- Validations: {
+- Validations: [
    email: exists,
    password: match,
- }
+   ]
 ---
  - [x] Account update
 
@@ -57,19 +55,19 @@ MVC / CRUD
  >>>Controller - UserController.update
  >>>>View - json({ id, name, email, provider, avatar_id })
 
- - yupValidation:{
+ - yupValidation: [
 
-   name: [ string ],
+   name: { string },
 
-   email: [ string, type ],
+   email: { string, type },
 
-   oldPassword: [string, min6 ],
+   oldPassword: { string, min6 },
 
-   password: [ string, min6, required if 'oldPassword' exits, not equal 'oldPassword' ],
+   password: { string, min6, required if 'oldPassword' exits, not equal 'oldPassword' },
 
-   confirmPassword: [ required if password exits, equal 'password' ]
+   confirmPassword: { required if password exits, equal 'password' }
 
- }
+    ]
  ---
  - [x] Upload Files
 
@@ -88,43 +86,56 @@ MVC / CRUD
 - [x] Appointment creation
 
  >Route - post('/appointments').e}.BearerToken({user_id})
- >>Model - Appointment.js /save : id , date, user_id, provider_id, created/update_at // belongsTo User.js // Postgres
+ >>Model - Appointment.js /save : id, date, user_id, provider_id, created/update_at // belongsTo User.js // Postgres
  >>>Controller - AppointmentController.store
  >>>>View - json({ id, user_id, provider_id, date, created/updated_at, canceled_at })
 
- - yupValidation:{
+ - yupValidation: [
 
    provider_id: [ number, required ],
 
    date: [ date, required ],
 
- }
+    ]
 
- - Validations: {
+ - Validations: [
    pastdate,
    hour availability
- }
+    ]
+
+    * Provider Notification -
+
+    >Schema - Notification.js /save: _id, read, content, user_id, created/updated_at
  ---
  - [x] Users appointment list
 
  >Route - get('/appontment').{BeaerToken{user_id}}
  >>Model - User.js / File.js /Appontment.js // Postgres
  >>>Controller - AppointmentController.index
- >>>>View - json({ id, data, provider: { id, name, avatar: { url, id, path}})
+ >>>>View - json({ id, date, provider: { id, name, avatar: { url, id, path }})
+ ---
+ - [x] Provider schedule list
 
-  ## middlewares
+ >Route - get('/schedule').{BeaerToken{provider_id}}
+ >>Model - User.js /Appontment.js // Postgres
+ >>>Controller - ScheduleController.index
+ >>>>View - json([{ id, date, canceled_at, created/updated_at, user_id, provider_id }])
 
- - [x] Authentication JTW
- - validations: {
+  ## Middlewares
+---
+ - [x] Bearer Token - Authentication JTW
+ - validations: [
 
-  * token provided,
+    * token provided,
 
-  * token integrity,
+    * token integrity,
 
-}
--[x] Multipart/form-data - multer
-- filename manipulation to string randon hexadecimal + originalfile .ext
--
+    ]
+
+  ---
+-[x] Multipart/form-data input - multer
+- output: filename manipulation randon hexadecimal string + originalfile .ext
+
 ---
 
 
