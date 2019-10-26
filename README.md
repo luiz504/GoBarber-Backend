@@ -1,5 +1,8 @@
 # API GoBarber
-  MVC / CRUD
+This application was developed to learn about Noje.js Envirioment following the
+MVC / CRUD.
+
+This API will serve the [Mobile](https://github.com/luiz504/GoBarber-Mobile) and [Web](https://github.com/luiz504/GoBarber-Web) applications.
 
 
 Table of contents
@@ -21,6 +24,7 @@ Table of contents
   * [Provider Notification Available Schedule](#Provider-Notification-Available-Schedule)
 * [Middlewares](#Middlewares)
 * [Background Jobs](#BackGround-Jobs)
+* [Instructions](#Instructions)
 
 ## Features
 ---
@@ -32,7 +36,7 @@ Table of contents
  >>>Controller - UserController.store
  >>>>View - json({ id, name. email, provider })
 
- - without token authentication
+ - Without token authentication
 
  - YupValidations: [
 
@@ -46,7 +50,7 @@ Table of contents
 
  - Validations: [
 
-   email already in use,
+   E-mail already in use,
 
     ]
 ---
@@ -57,7 +61,7 @@ Table of contents
 >>>Controller - SessionController.store
 >>>>View - json({ user:{ id, name, email, provider, avatar:{ url, path }}, token })
 
-- without token authentication
+ - Without token authentication
 
  - YupValidations: [
 
@@ -69,9 +73,9 @@ Table of contents
 
 - Validations: [
 
-   email exists in DB,
+   E-mail exists in DB,
 
-   password matches,
+   Password matches,
 
    ]
 ---
@@ -99,9 +103,9 @@ Table of contents
 
   - Validations: [
 
-    email already in use,
+    E-mail already in use,
 
-    password matchs,
+    Password matchs,
 
     ]
  ---
@@ -139,7 +143,7 @@ Table of contents
 
  - Validations: [
 
-   provider_id is provider: true,
+   The provider_id is provider: true,
 
    Provider and user id are different,
 
@@ -180,7 +184,7 @@ Table of contents
 
     ]
 
- - ### E-mail Notification Job trigger
+ - #### E-mail Notification Job trigger
   >Model - Queue.js / Mail.js //Redis // Bee-queue
   >>Layout - cancellation.hbs
  ---
@@ -208,15 +212,15 @@ Table of contents
 
   - Validations: [
 
-    logged account is provider
+    Logged account is provider
 
     ]
 
   - misc: [
 
-    pagination: 20items,
+    Pagination: 20items,
 
-    sort: createdAt 'desceding'
+    Sort: createdAt 'desceding'
 
     ]
  ---
@@ -288,12 +292,12 @@ Table of contents
 ---
 
 ## Errors handles after deploy manager
-- [x] - [Sentry](https://sentry.io)
+- [x] [Sentry](https://sentry.io)
 - Config: /src/config/sentry
 - File: /src/app.js
 
 
-## Instructions to run the project
+## Instructions
 
 Requirements:
 
@@ -313,9 +317,9 @@ Requirements:
 
 Insomnia - Import insominia_xxxx-xx-xx.json to your Insomnia app
 
-[GobarberWeb](https://github.com/luiz504/GoBarber-Web) - Provider DashBoard
+[Gobarber Web](https://github.com/luiz504/GoBarber-Web) - Provider DashBoard
 
-Gobarber Mobile - Users App
+[Gobarber Mobile](https://github.com/luiz504/GoBarber-Mobile) - Users App
 
 
 
