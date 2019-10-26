@@ -21,7 +21,7 @@ module.exports = {
     'class-methos-use-this': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
-    'no-unused-vars': 'off' //split auth Bearer
-
+    'no-unused-vars': 'off', //split auth Bearer
+    'camelcase': 'off'
   },
 };
